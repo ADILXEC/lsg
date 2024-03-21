@@ -9,22 +9,31 @@
         body {
             margin: 0;
             padding: 0;
-            height: 100%;
+            height: 100vh; /* Ensure body takes full viewport height */
             overflow: hidden;
+        }
+
+        .spline-viewer-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
         }
 
         spline-viewer {
             width: 100%;
             height: 100%;
             position: relative;
-            z-index: 1; /* Ensure the Spline Viewer is beneath the watermark */
+            z-index: 1;
         }
 
         .pill-button {
             position: absolute;
             bottom: 20px;
             left: 20px;
-            z-index: 2; /* Ensure the button is above the viewer */
+            z-index: 2;
             padding: 10px 25px;
             border-radius: 20px;
             background-color: #ffffff;
@@ -34,7 +43,7 @@
             border: none;
             cursor: pointer;
             font-family: 'Futura', sans-serif;
-            display: none; /* Initially hide the button */
+            display: none;
         }
 
         .blue-screen {
@@ -44,19 +53,19 @@
             width: 100%;
             height: 100%;
             background-color: #0b7cf6;
-            opacity: 1; /* Initially visible */
-            z-index: 3; /* Ensure the blue screen is above other elements */
+            opacity: 1;
+            z-index: 3;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            transition: opacity 2s ease; /* Fade effect */
+            transition: opacity 2s ease;
         }
 
         .blue-screen img {
             max-width: 80%;
             max-height: 60%;
-            margin-bottom: 20px; /* Add margin below the image */
+            margin-bottom: 20px;
         }
 
         .blue-screen p {
@@ -66,20 +75,14 @@
             text-align: center;
         }
 
-        .spline-viewer-wrapper {
-            position: relative;
-            width: 100%; /* Adjust as needed */
-            height: 100%; /* Adjust as needed */
-        }
-
         .watermark {
             position: absolute;
-            top: 750px;
+            bottom: 20px;
             right: 10px;
-            width: 150px; /* Adjust the size as needed */
-            height: auto; /* Maintain aspect ratio */
-            opacity: .9; /* Adjust the transparency as needed */
-            z-index: 2; /* Ensure the watermark is above the Spline Viewer */
+            width: 150px;
+            height: auto;
+            opacity: 0.9;
+            z-index: 2;
         }
     </style>
 </head>
@@ -98,25 +101,21 @@
     <a class="pill-button" href="http://lsg360.com/">BACK</a>
 
     <script>
-        // Function to hide the blue screen after a delay
         function hideBlueScreen() {
             const blueScreen = document.querySelector('.blue-screen');
-            blueScreen.style.opacity = '0'; /// Make the blue screen transparent
+            blueScreen.style.opacity = '0';
             setTimeout(() => {
-                blueScreen.remove(); // Remove the blue screen from the DOM after fading out
-            }, 2000); /// Wait for the fade effect to complete
+                blueScreen.remove();
+            }, 2000);
         }
 
-        // Hide the blue screen after 3 seconds
         setTimeout(hideBlueScreen, 3000);
 
-        // Function to show the button after a delay
         function showButton() {
             const button = document.querySelector('.pill-button');
             button.style.display = 'block';
         }
 
-        // Show the button after 3 seconds
         setTimeout(showButton, 3000);
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -125,7 +124,6 @@
         });
 
         function handleClick() {
-            // Add your button click functionality here
             console.log('Button clicked');
         }
     </script>
